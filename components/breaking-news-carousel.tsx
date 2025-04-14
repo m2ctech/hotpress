@@ -81,7 +81,7 @@ export function BreakingNewsCarousel() {
                         timeStyle: "short",
                       })}
                     </span>
-                    <Button variant="link" className="text-[#FAD440] p-0 h-auto" asChild>
+                    <Button variant="link" className="bg-[white] text-[black] p-2 h-auto" asChild>
                       <a href={article.url} target="_blank" rel="noopener noreferrer">
                         Read Full Story
                       </a>
@@ -118,7 +118,7 @@ export function BreakingNewsCarousel() {
         {articles.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full ${index === activeIndex ? "bg-[#FAD440]" : "bg-white/50"}`}
+            className={`w-2 h-2 rounded-full ${index === activeIndex ? "bg-[white]" : "bg-white/50"}`}
             onClick={() => setActiveIndex(index)}
           >
             <span className="sr-only">Go to slide {index + 1}</span>

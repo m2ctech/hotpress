@@ -141,7 +141,7 @@ export function VideoArticle() {
 
         {/* Content overlay */}
         <div className="absolute bottom-12 left-0 p-6 text-white">
-          <Badge className="mb-2 bg-[#FAD440] text-black">VIDEO</Badge>
+          <Badge className="mb-2 bg-[black] text-white">VIDEO</Badge>
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Aerial Tour: Gaborone's Rapid Urban Development Transforms Skyline
           </h2>
@@ -165,7 +165,7 @@ export function VideoArticle() {
           <span className="text-sm text-muted-foreground">•</span>
           <span className="text-sm text-muted-foreground">15.2K views</span>
         </div>
-        <Link href="/article/video-gaborone-development" className="flex items-center text-[#FAD440] hover:underline">
+        <Link href="/article/video-gaborone-development" className="flex items-center text-[black] hover:underline">
           Watch full report <ChevronRight className="h-4 w-4 ml-1" />
         </Link>
       </div>

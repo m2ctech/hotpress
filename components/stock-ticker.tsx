@@ -60,7 +60,7 @@ export function StockTicker({ className }: StockTickerProps) {
     >
       <div className="container relative">
         <div className="flex items-center absolute left-0 top-0 bottom-0 bg-black z-10 pr-4">
-          <span className="font-bold text-[#FAD440]">BSE</span>
+          <span className="font-bold text-[white]">BSE</span>
         </div>
 
         <div className="ticker-container ml-[80px]">

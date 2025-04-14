@@ -29,19 +29,19 @@ export function UserAccountNav() {
     return (
       <div className="flex items-center gap-2">
         <Link href="/auth/login">
-          <Button variant="outline" size="sm" className="bg-white text-black hover:bg-white/80">
+          <Button variant="outline" size="sm" className="bg-white text-black">
             Sign In
           </Button>
         </Link>
         <Link href="/auth/register" className="hidden md:block">
-          <Button size="sm" className="bg-black text-white hover:bg-black/80">
+          <Button size="sm" className="bg-white text-black">
             Sign Up
           </Button>
         </Link>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-black">
-              <Download className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="text-white">
+              <Download className="h-6 w-6" />
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">

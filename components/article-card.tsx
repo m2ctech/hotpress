@@ -160,7 +160,7 @@ export function ArticleCard({ article, category, isLoading = false }: ArticleCar
           alt={title}
           className="object-cover w-full h-full transition-transform group-hover:scale-105"
         />
-        <Badge className="absolute top-2 left-2 bg-[#FAD440] text-black">{articleCategory}</Badge>
+        <Badge className="absolute top-2 left-2 bg-[black] text-white">{articleCategory}</Badge>
       </div>
       <div className="p-4">
         <a href={articleUrl} target="_blank" rel="noopener noreferrer" onClick={handleArticleClick}>

@@ -24,8 +24,8 @@ export function AppDownload() {
   }
 
   return (
-    <Card className="overflow-hidden border-[#FAD440]">
-      <CardHeader className="bg-[#FAD440] text-black pb-2">
+    <Card className="overflow-hidden border-[black]">
+      <CardHeader className="bg-[black] text-white pb-2">
         <CardTitle className="flex items-center">
           <Smartphone className="mr-2 h-5 w-5" />
           Get Our Mobile App
@@ -103,7 +103,7 @@ export function AppDownload() {
             </Dialog>
           </div>
 
-          <Button className="w-full bg-[#FAD440] text-black hover:bg-[#FAD440]/80" onClick={detectPlatform}>
+          <Button className="w-full bg-[black] text-white hover:bg-[black]/80" onClick={detectPlatform}>
             <Download className="mr-2 h-4 w-4" />
             Download Now
           </Button>

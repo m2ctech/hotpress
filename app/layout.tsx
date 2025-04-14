@@ -9,7 +9,7 @@ import { NotificationProvider } from "@/contexts/notification-context"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Daily Pulse - Your Trusted News Source",
+  title: "Hot Press Media - Your Trusted News Source",
   description: "Get the latest news, analysis, and in-depth reporting on politics, business, technology, and more.",
     generator: 'v0.dev'
 }

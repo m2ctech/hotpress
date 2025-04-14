@@ -54,7 +54,7 @@ export function FeaturedArticle() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 p-6 text-white">
-          <Badge className="mb-2 bg-[#FAD440] text-black">FEATURED</Badge>
+          <Badge className="mb-2 bg-[black] text-white">FEATURED</Badge>
           <h2 className="text-2xl md:text-3xl font-bold mb-2">{formattedArticle.title}</h2>
           <p className="text-gray-200 mb-4 max-w-2xl">{formattedArticle.excerpt}</p>
           <div className="flex items-center gap-4">

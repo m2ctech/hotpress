@@ -64,9 +64,9 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50">
-        <div className="bg-[#FAD440] py-2">
+        <div className="bg-[black] py-2">
           <div className="container flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-black">
+            <Link href="/" className="text-2xl font-bold text-white">
               HOT PRESS MEDIA
             </Link>
             <div className="flex items-center gap-4">
@@ -97,8 +97,8 @@ export default function Home() {
         <section className="py-6 bg-black text-white">
           <div className="container">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-[#FAD440]">BREAKING NEWS</h2>
-              <Badge variant="outline" className="bg-[#FAD440] text-black hover:bg-[#FAD440]/80">
+              <h2 className="text-xl font-bold text-[white]">BREAKING NEWS</h2>
+              <Badge variant="outline" className="bg-[red] text-white">
                 LIVE
               </Badge>
             </div>
@@ -142,7 +142,7 @@ export default function Home() {
               <AppDownload />
 
               <Card>
-                <CardHeader className="bg-[#FAD440] text-black">
+                <CardHeader className="bg-[black] text-white">
                   <CardTitle>Newsletter</CardTitle>
                   <CardDescription className="text-black/70">Get the latest news in your inbox</CardDescription>
                 </CardHeader>

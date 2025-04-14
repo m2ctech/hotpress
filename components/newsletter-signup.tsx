@@ -72,7 +72,7 @@ export function NewsletterSignup() {
               </label>
             ))}
           </div>
-          <Button type="submit" className="w-full bg-[#FAD440] text-black hover:bg-[#FAD440]/80">
+          <Button type="submit" className="w-full bg-[black] text-white hover:bg-[#FAD440]/80">
             Subscribe
           </Button>
           <p className="text-xs text-muted-foreground text-center">

@@ -11,10 +11,10 @@ export function WeatherWidget() {
 
   return (
     <Card>
-      <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+      <CardHeader className="bg-black text-white">
         <div className="flex justify-between items-center">
           <CardTitle>Weather</CardTitle>
-          <Sun className="h-6 w-6 text-yellow-300" />
+          <Sun className="h-6 w-6 text-white-300" />
         </div>
       </CardHeader>
       <CardContent className="pt-6">
