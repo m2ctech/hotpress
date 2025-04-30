@@ -1,20 +1,18 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import {  ToastContainer,toast } from "react-toastify"  
 import { useAuth } from "@/contexts/auth-context"
+import { subscribeToDailyMotivation } from "../lib/appwrite" 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 export function NewsletterSignup() {
   const { user } = useAuth()
-  const { addToast } = useToast()
   const [email, setEmail] = useState(user?.email || "")
-  const [submitted, setSubmitted] = useState(false)
   const [selectedNewsletters, setSelectedNewsletters] = useState<string[]>([])
+  const [loading, setLoading] = useState(false) // State to track if the form is being submitted
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target
@@ -25,61 +23,71 @@ export function NewsletterSignup() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) {
-      setSubmitted(true)
 
-      // Save newsletter preferences if user is logged in
-      if (user && selectedNewsletters.length > 0) {
-        // In a real app, this would update the user's preferences in the database
-        addToast(`Subscribed to ${selectedNewsletters.join(", ")}`, "success")
+    // Early return if no email or no newsletters are selected
+    if (!email || selectedNewsletters.length === 0) {
+      toast.error("Please select at least one newsletter.")
+      return
+    }
+
+    setLoading(true) // Start loading
+
+    try {
+      // Call the function to write to Appwrite
+      const message = await subscribeToDailyMotivation(email, selectedNewsletters)
+
+      if (message) {
+        toast.success(message)
       } else {
-        addToast("Thank you for subscribing!", "success")
+        toast.success("Thank you for subscribing!")
       }
+    } catch (error) {
+      toast.error("Failed to save Daily Motivation subscription.")
+    } finally {
+      setLoading(false) // Stop loading
     }
   }
 
   return (
     <div>
-      {submitted ? (
-        <div className="flex flex-col items-center text-center py-2">
-          <div className="bg-green-100 rounded-full p-2 mb-2">
-            <Check className="h-5 w-5 text-green-600" />
-          </div>
-          <p className="font-medium">Thank you for subscribing!</p>
-          <p className="text-sm text-muted-foreground mt-1">You'll receive our next newsletter in your inbox.</p>
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <Input
+          type="email"
+          placeholder="Your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <div className="flex flex-wrap gap-2">
+          {["Daily News", "Breaking News", "Weekly Digest"].map((type) => (
+            <label key={type} className="flex items-center space-x-2 text-sm">
+              <input
+                type="checkbox"
+                className="rounded border-gray-300"
+                value={type}
+                onChange={handleCheckboxChange}
+              />
+              <span>{type}</span>
+            </label>
+          ))}
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <Input
-            type="email"
-            placeholder="Your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <div className="flex flex-wrap gap-2">
-            {["Daily News", "Breaking News", "Weekly Digest"].map((type) => (
-              <label key={type} className="flex items-center space-x-2 text-sm">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300"
-                  value={type}
-                  onChange={handleCheckboxChange}
-                />
-                <span>{type}</span>
-              </label>
-            ))}
-          </div>
-          <Button type="submit" className="w-full bg-[black] text-white hover:bg-[#FAD440]/80">
-            Subscribe
-          </Button>
-          <p className="text-xs text-muted-foreground text-center">
-            By subscribing, you agree to our Terms of Service and Privacy Policy.
-          </p>
-        </form>
-      )}
+
+        <Button
+          type="submit"
+          className={`w-full bg-[black] text-white ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={loading} // Disable the button while loading
+        >
+          {loading ? "Subscribing..." : "Subscribe"} {/* Change button text based on loading state */}
+        </Button>
+        
+        <p className="text-xs text-muted-foreground text-center">
+          By subscribing, you agree to our Terms of Service and Privacy Policy.
+        </p>
+      </form>
+     
+     {/* <ToastContainer theme="colored" /> */}
     </div>
   )
 }

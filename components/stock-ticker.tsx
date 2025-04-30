@@ -54,13 +54,13 @@ export function StockTicker({ className }: StockTickerProps) {
 
   return (
     <div
-      className={cn("bg-black text-white py-2 overflow-hidden", className)}
+      className={cn("bg-white text-black py-2 overflow-hidden", className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="container relative">
-        <div className="flex items-center absolute left-0 top-0 bottom-0 bg-black z-10 pr-4">
-          <span className="font-bold text-[white]">BSE</span>
+        <div className="flex items-center absolute left-0 top-0 bottom-0 bg-white z-10 pr-4">
+          <span className="font-bold text-[black] p-2">BSE-TICKER</span>
         </div>
 
         <div className="ticker-container ml-[80px]">

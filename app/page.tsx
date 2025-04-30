@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Bell, BookmarkPlus, Search } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -22,6 +23,11 @@ import { useAuth } from "@/contexts/auth-context"
 import { useToast } from "@/hooks/use-toast"
 import { useEffect, useState } from "react"
 import { getCategories } from "@/lib/appwrite"
+import {  ToastContainer,toast } from "react-toastify"  
+import NewsletterSubHero from "@/components/ui/newsletter-sub-hero"
+import HpLogo from "@/assets/images/hp_logo.png" // <-- make sure to add an illustration
+
+//import NewsletterSubHero from "@/components/ui/newsletter-sub-hero"
 
 export default function Home() {
   const { user } = useAuth()
@@ -63,48 +69,52 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50">
-        <div className="bg-[black] py-2">
-          <div className="container flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-white">
-              HOT PRESS MEDIA
-            </Link>
-            <div className="flex items-center gap-4">
-              <div className="relative hidden md:block">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Search..." className="w-[200px] pl-8 bg-white text-black" />
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-black text-white hover:bg-black/80"
-                onClick={handleSubscribe}
-              >
-                <Bell className="mr-2 h-4 w-4" />
-                Subscribe
-              </Button>
-              <UserAccountNav />
-            </div>
-          </div>
-        </div>
-        <MainNav />
-      </header>
+<header className="sticky top-0 z-50">
+  <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-lg py-4 rounded-b-xl">
+    <div className="container flex flex-col items-center justify-center gap-4 text-center">
+      {/* Logo centered at the top */}
+      <Link href="/" className="text-2xl font-bold text-white">
+        <Image
+          src={HpLogo}
+          alt="Newsletter Illustration"
+          width={150}
+          height={100}
+          className="max-w-full h-auto rounded-lg"
+          priority
+        />
+      </Link>
+
+      <h2 className="text-black text-xl font-semibold">
+        Get Local Insights That Actually Help
+      </h2>
+      <p className="text-black text-sm max-w-md">
+        Subscribe to our newsletters packed with practical solutions, updates, and real opportunities.
+      </p>
+
+      {/* Buttons and user nav centered below */}
+      <div className="flex items-center gap-4">
+        <Button
+          variant="outline"
+          size="sm"
+          className="bg-black/80 text-white hover:bg-black/90 backdrop-blur-md"
+          onClick={handleSubscribe}
+        >
+          <Bell className="mr-2 h-4 w-4" />
+          Subscribe
+        </Button>
+        <UserAccountNav />
+      </div>
+    </div>
+  </div>
+</header>
+
+
 
       {/* Stock Ticker */}
       <StockTicker />
 
       <main className="flex-1">
-        <section className="py-6 bg-black text-white">
-          <div className="container">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-[white]">BREAKING NEWS</h2>
-              <Badge variant="outline" className="bg-[red] text-white">
-                LIVE
-              </Badge>
-            </div>
-            <BreakingNewsCarousel />
-          </div>
-        </section>
+       <NewsletterSubHero />
 
         <section className="py-8">
           <div className="container">
@@ -428,6 +438,7 @@ export default function Home() {
           <p className="text-sm text-gray-400 text-center">© 2025 Hot Press Media. All rights reserved.</p>
         </div>
       </footer>
+      <ToastContainer theme="colored" />
     </div>
   )
 }

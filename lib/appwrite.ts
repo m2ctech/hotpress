@@ -3,7 +3,7 @@ import { Account, Client, Databases, Storage, ID, Query, type Models } from "app
 // Initialize the Appwrite client
 export const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1") // Replace with your Appwrite endpoint
-  .setProject("your-project-id") // Replace with your project ID
+  .setProject("67fe120d0019f82e8ac5") // Replace with your project ID
 
 // Initialize Appwrite services
 export const account = new Account(client)
@@ -11,11 +11,12 @@ export const databases = new Databases(client)
 export const storage = new Storage(client)
 
 // Database and collection IDs
-export const DATABASE_ID = "hot-press-media"
+export const DATABASE_ID = "67fe12570018d2d6d26d"
 export const USERS_COLLECTION_ID = "users"
 export const ARTICLES_COLLECTION_ID = "articles"
 export const COMMENTS_COLLECTION_ID = "comments"
 export const CATEGORIES_COLLECTION_ID = "categories"
+export const DAILYMOTIVATION_COLLECTION_ID = "67fe33100024be7e376f"
 export const STORAGE_BUCKET_ID = "media-bucket"
 
 // Types
@@ -157,6 +158,27 @@ export const getArticlesByCategory = async (category: string, limit = 10, offset
   } catch (error) {
     console.error("Error getting articles by category:", error)
     throw error
+  }
+}
+
+// Function to subscribe a user to Daily Motivation
+export async function subscribeToDailyMotivation(email: string, selectedNewsletters: string[]) {
+  try {
+    if (selectedNewsletters.includes("Daily News")) {
+      await databases.createDocument(
+        DATABASE_ID,
+        DAILYMOTIVATION_COLLECTION_ID,
+        ID.unique(),
+        {
+          email,
+        }
+      )
+      return "Daily Motivation record added!"
+    }
+    return null
+  } catch (error) {
+    console.error("Failed to write to DAILYMOTIVATION:", error)
+    throw new Error("Failed to save Daily Motivation subscription.")
   }
 }
 
